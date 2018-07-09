@@ -8,9 +8,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="robots" content="index, follow">
   <title>UnoSoft Solutions Inc.</title>
+  <link rel="stylesheet" href="css/animations.css">
   <link rel="stylesheet" href="css/main.css">
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/fullpage.min.css">
+  <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
 
 </head>
 <body>
@@ -21,31 +23,147 @@
 	<![endif]-->
 </head>
 <body>
-
+<div class="entrance-box tr"></div>
+<div class="entrance-box bl"></div>
 <div id="fullpage">
 	<div class="section " id="section0">
     <!-- Add logo, tagline and background image -->
     <img src="images/unosoft-logo.png"/>
     <h1>First Class Information Technology Solutions Provider</h1>
-
-    <span>Scroll to view</span>
+    <div class="progressTimer pt-home"></div>
+    <!-- <span>Scroll to view</span> -->
   </div>
 	<div class="section" id="section1">
-	    <div class="slide" id="slide1"><h1>Soft graduated colors</h1></div>
-	    <div class="slide" id="slide2"><h1>Even for each slide if you want</h1></div>
+
+      <iframe width="560" height="315" src="https://www.youtube.com/embed/P4g__2bGUMQ?start=6" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+
+      <div class="progressTimer pt-video"></div>
 	</div>
 	<div class="section" id="section2">
 		<div class="intro">
-			<h1>Feel free!</h1>
-			<p>Using CSS3 gradients you can play as much as you want with graduated colors</p>
-		</div>
-	</div>
+			<h1>Background</h1>
+			<p>We started from a simple premise to provide an integrated advantage to businesses and the society.
+          UnoSoft recognizes the importance of shaping society’s future not only through delivering a complete suite of steadfast IT services for a multitude of industries but also intuitive software solutions for public safety.
+          UnoSoft has a simple and sincere purpose- to lead the society with innovation that is secure.
+          In a rapidly changing world, we believe that technology can help create a connected environment that is both safe and rewarding.</p>
+    </div>
+    <div class="progressTimer pt-background"></div>
+  </div>
+  <div class="section" id="section3">
+    <h1>Vision Statement</h1>
+    <p>To be the Uno, First Class Information Technology Solution Provider.</p>
+    <h1>Mission Statement</h1>
+    <p>To provide Excellent Service and Experience in Information Technology.</p>
+    <div class="progressTimer pt-vision-mission"></div>
+  </div>
+  <div class="section" id="section4">
+    <h1>Values</h1>
+    <p>We treat our employees as customers as they both have an equal importance on the success of the company, and we do our business services with best integrity and quality.</p>
+    <div class="progressTimer pt-values"></div>
+  </div>
+  <div class="section" id="section5">
+    <h1>High Value IT Services</h1>
+    <ul>
+      <li>Application Development Management (ADM)</li>
+      <li>Enterprises today require an application portfolio that is managed 24x7 in order to remain secure, reliable, and consistent, yet cost-effective. They need solutions that ensure high availability and performance coupled with strong transition capabilities to enable risk-free change. In addition, the changes brought about by the digital transformation across most industries require applications to be agile and responsive, giving a fresh impetus to legacy modernization.</li>
+    </ul>
+    <div class="progressTimer pt-services"></div>
+  </div>
+  <div class="section" id="section6">
+    <h1>Products</h1>
+    <h6>UnoSMS</h6>
+    <p>UnoSMS is one of the most powerful applications today that has the capacity to send SMS to vast quantities of mobile phones in a minute. As such, UnoSMS is a must-have communication solution of all companies to responsively and efficiently connect to its clientele. 
+        UnoSMS can be customized to fit any companies or organizations platform requirements. It can create SMS templates for the following:		
+        Marketing Campaigns 
+        Billing Reminders 
+        Loyalty and Rewards Notifications 
+        Announcements 
+        Greetings 
+        Any other correspondences</p>
+        <div class="progressTimer pt-products"></div>
+  </div>
+  <div class="section" id="section7">
+    <h1>Expand Your Brand</h1>
+    <h1>Build Your Virtual Presence</h1>
+    <h1>Build an Application</h1>
+    <div class="progressTimer pt-footer"></div>
+  </div>
 </div>
+  
+  <script src="//static.codepen.io/assets/common/stopExecutionOnTimeout-b2a7b3fe212eaa732349046d8416e00a9dec26eb7fd347590fbced3ab38af52e.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+  <script src="https://www.jqueryscript.net/demo/Easy-jQuery-Progress-Bar-Timer-Plugin-For-Bootstrap-3-progressTimer/js/jquery.progressTimer.js"></script>
+  
+  <script>
+  var moveDownCounter = 0;
+  $( document ).ready(function() {
+    
+  });
 
+  function pTimersRepeat (section, isLast){
+
+    var ptSection = ".progressTimer".concat(".pt-".concat(section));
+    console.log(ptSection);
+    $(ptSection).progressTimer({
+      timeLimit: 5,
+      warningThreshold: 8,
+      baseStyle: 'progress-bar-warning',
+      warningStyle: 'progress-bar-danger',
+      completeStyle: 'progress-bar-info',
+      // TODO: Pause progressTimer onScroll
+      onFinish: function() {
+        moveDownCounter++;
+        console.log("Move Down Count: "+ moveDownCounter);
+
+        if(isLast)
+          myFullpage.moveTo("home");
+        else  
+          myFullpage.moveSectionDown();
+      }
+    });
+  } 
+
+  
+
+  // TODO: Add scrolling handle
+
+  // TODO: Add next animation
+  //# sourceURL=pen.js
+  </script>
 <script type="text/javascript" src="js/fullpage.min.js"></script>
 
 <script type="text/javascript">
-    var myFullpage = new fullpage('#fullpage');
+    var myFullpage = new fullpage('#fullpage', {
+      continuousVertical: false,
+      licenseKey: "OPEN-SOURCE-GPLV3-LICENSE",
+      anchors: ['home', 'video', 'background', 'vision-mission', 'values', 'services', 'products', 'footer'],
+
+      afterLoad: function(origin, destination, direction){
+        console.log("Number " + destination.index + " Loaded " + destination.anchor);
+
+        var loadedSlide = this;
+
+        //first slide of the second section
+        if(destination.anchor == 'secondPage'){
+          // console.log("Second page loaded");
+        }
+
+        //second slide of the second section (supposing #secondSlide is the
+        //anchor for the second slide)
+        if(destination.anchor == 'thirdPage'){
+          // console.log("third page loadded");
+        }
+
+        //Last section
+        // Run timer of section TODO: add delay on afterLoad
+        if(destination.index === $('.section').length - 1){
+          console.log('last na baby');
+          pTimersRepeat(destination.anchor, true);
+        }
+        else
+          pTimersRepeat(destination.anchor, false);
+      }
+    });
 </script>
 </body>
 </html>

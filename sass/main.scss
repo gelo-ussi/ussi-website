@@ -1,4 +1,9 @@
-  p {
+// Color Pallete
+$primary: blue;
+$secondary: yellow;
+$tertiary: gray;
+
+p {
     color: black;
   }
 	/* Style for our header texts
@@ -64,4 +69,32 @@
 	* --------------------------------------- */
 	#infoMenu li a {
 		color: #fff;
-	}
+  }
+  
+  .entrance-box {
+    background-color:$tertiary;
+    width: 100%;
+    height:100%;
+    position: fixed;
+    top: 0; 
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 2;
+
+    &.tr {
+      // border: red 2rem solid;
+      animation: scale-out-tr 0.5s ease-in 500ms 1 normal both;
+    }
+
+    &.bl {
+      // border: blue 2rem solid;
+      animation: scale-out-bl 0.5s ease-in 500ms 1 normal both;
+    }
+  }
+  
+  // Progress timer
+  .progressTimer {
+    width:100%;
+    height:1px;
+  }
